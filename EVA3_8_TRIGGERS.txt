@@ -1,0 +1,104 @@
+MySQL Shell 8.0.15
+
+Copyright (c) 2016, 2019, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+ MySQL  JS > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): v
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.15 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306 ssl  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  localhost:3306 ssl  SQL > use eva_3;
+Default schema set to `eva_3`.
+Fetching table and column names from `eva_3` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > create table clientes(
+                                      -> id int,
+                                      -> nombre varchar(50),
+                                      -> apellido_pat varcahr(50),
+                                      -> apellido_mat varchar(50),
+                                      -> fecha_nac date,
+                                      -> rfc varchar(20),
+                                      -> credito  double,
+                                      -> comision double);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(50),
+apellido_mat varchar(50),
+fecha_nac date,
+rfc varchar(20),
+credito ' at line 4
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > create table clientes( id int, nombre varchar(50), apellido_pat varchar(50), apellido_mat varchar(50), fecha_nac date, rfc varchar(20), credito  double, comision double);
+Query OK, 0 rows affected (0.0784 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > create table direccion_cliente(
+                                      -> id_cliente int,
+                                      -> calle varchar(50),
+                                      -> numero varchar(50),
+                                      -> colonia varchar(50),
+                                      -> cp varchar(50));
+Query OK, 0 rows affected (0.0599 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > lolpp:;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'lolpp:' at line 1
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into clientes
+                                      -> values(0,nombre,apellidoP,mat,'1000-11-11','',0,0);
+ERROR: 1054 (42S22): Unknown column 'apellidoP' in 'field list'
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into clientes values(0,'nombre','apellidoP','mat','1000-11-11','',0,0);
+Query OK, 1 row affected (0.0095 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into clientes (nombre,apellido_pat,apellido_mat,fecha_nac)
+                                      -> values
+                                      -> ('Hola','Mundo','Cruel','1999-11-11');
+Query OK, 1 row affected (0.0072 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from clientes;
++----+--------+--------------+--------------+------------+------+---------+----------+
+| id | nombre | apellido_pat | apellido_mat | fecha_nac  | rfc  | credito | comision |
++----+--------+--------------+--------------+------------+------+---------+----------+
+|  0 | nombre | apellidoP    | mat          | 1000-11-11 |      |       0 |        0 |
+|  1 | Hola   | Mundo        | Cruel        | 1999-11-11 | NULL |    NULL |     NULL |
++----+--------+--------------+--------------+------------+------+---------+----------+
+2 rows in set (0.0005 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into clientes( nombre,apellido_pat,apellido_mat,fecha_nac)
+                                      -> values
+                                      -> ('Yo','Merengues','QuienMas','1953-10-5');
+Query OK, 1 row affected (0.0103 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from clientes;
++----+--------+--------------+--------------+------------+---------------+---------+----------+
+| id | nombre | apellido_pat | apellido_mat | fecha_nac  | rfc           | credito | comision |
++----+--------+--------------+--------------+------------+---------------+---------+----------+
+|  0 | nombre | apellidoP    | mat          | 1000-11-11 |               |       0 |        0 |
+|  1 | Hola   | Mundo        | Cruel        | 1999-11-11 | NULL          |    NULL |     NULL |
+|  2 | Yo     | Merengues    | QuienMas     | 1953-10-05 | MeQY531005706 |    NULL |     NULL |
++----+--------+--------------+--------------+------------+---------------+---------+----------+
+3 rows in set (0.0005 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > alter table direccion_cliente add id key auto_increment before id_cliente;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key auto_increment before id_cliente' at line 1
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > alter table direccion_cliente add id int key auto_increment before id_cliente;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'before id_cliente' at line 1
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > alter table direccion_cliente add id int key auto_increment first id_cliente;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id_cliente' at line 1
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > alter table direccion_cliente add id int key auto_increment;
+Query OK, 0 rows affected (0.0914 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306 ssl  eva_3  SQL >

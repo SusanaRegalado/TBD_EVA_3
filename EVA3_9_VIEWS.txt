@@ -1,0 +1,423 @@
+El último tema de taller de base de datos.... views
+select c.title, a.first_name, a.last_name from actor A
+innner join film_actor b on a.actor_id = b.actor_id
+inner join film c on b.film_id = c.film_id;
+
+
+
+listado de peliculas y categorias nombe de la pelicula y nombre de la categoria crear vista
+
+select a.title, c.name from film a
+inner join film_category b on a.film_id = b.film_id
+inner join category c on b.category_id = c.category_id limit 3;
+MySQL Shell 8.0.15
+
+Copyright (c) 2016, 2019, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+ MySQL  JS > \qsl
+Unknown command: '\qsl'
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): v
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 136
+Server version: 8.0.15 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306 ssl  SQL > use eva_3:
+MySQL Error 1049: Unknown database 'eva_3:'
+
+ MySQL  localhost:3306 ssl  SQL > use eva_3
+Default schema set to `eva_3`.
+Fetching table and column names from `eva_3` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from con_actores;
++-----+-------------+--------------+
+| id  | nombre      | apellido     |
++-----+-------------+--------------+
+|   1 | PENELOPE    | GUINESS      |
+|   2 | NICK        | WAHLBERG     |
+|   3 | ED          | CHASE        |
+|   4 | JENNIFER    | DAVIS        |
+|   5 | JOHNNY      | LOLLOBRIGIDA |
+|   6 | BETTE       | NICHOLSON    |
+|   7 | GRACE       | MOSTEL       |
+|   8 | MATTHEW     | JOHANSSON    |
+|   9 | JOE         | SWANK        |
+|  10 | CHRISTIAN   | GABLE        |
+|  11 | ZERO        | CAGE         |
+|  12 | KARL        | BERRY        |
+|  13 | UMA         | WOOD         |
+|  14 | VIVIEN      | BERGEN       |
+|  15 | CUBA        | OLIVIER      |
+|  16 | FRED        | COSTNER      |
+|  17 | HELEN       | VOIGHT       |
+|  18 | DAN         | TORN         |
+|  19 | BOB         | FAWCETT      |
+|  20 | LUCILLE     | TRACY        |
+|  21 | KIRSTEN     | PALTROW      |
+|  22 | ELVIS       | MARX         |
+|  23 | SANDRA      | KILMER       |
+|  24 | CAMERON     | STREEP       |
+|  25 | KEVIN       | BLOOM        |
+|  26 | RIP         | CRAWFORD     |
+|  27 | JULIA       | MCQUEEN      |
+|  28 | WOODY       | HOFFMAN      |
+|  29 | ALEC        | WAYNE        |
+|  30 | SANDRA      | PECK         |
+|  31 | SISSY       | SOBIESKI     |
+|  32 | TIM         | HACKMAN      |
+|  33 | MILLA       | PECK         |
+|  34 | AUDREY      | OLIVIER      |
+|  35 | JUDY        | DEAN         |
+|  36 | BURT        | DUKAKIS      |
+|  37 | VAL         | BOLGER       |
+|  38 | TOM         | MCKELLEN     |
+|  39 | GOLDIE      | BRODY        |
+|  40 | JOHNNY      | CAGE         |
+|  41 | JODIE       | DEGENERES    |
+|  42 | TOM         | MIRANDA      |
+|  43 | KIRK        | JOVOVICH     |
+|  44 | NICK        | STALLONE     |
+|  45 | REESE       | KILMER       |
+|  46 | PARKER      | GOLDBERG     |
+|  47 | JULIA       | BARRYMORE    |
+|  48 | FRANCES     | DAY-LEWIS    |
+|  49 | ANNE        | CRONYN       |
+|  50 | NATALIE     | HOPKINS      |
+|  51 | GARY        | PHOENIX      |
+|  52 | CARMEN      | HUNT         |
+|  53 | MENA        | TEMPLE       |
+|  54 | PENELOPE    | PINKETT      |
+|  55 | FAY         | KILMER       |
+|  56 | DAN         | HARRIS       |
+|  57 | JUDE        | CRUISE       |
+|  58 | CHRISTIAN   | AKROYD       |
+|  59 | DUSTIN      | TAUTOU       |
+|  60 | HENRY       | BERRY        |
+|  61 | CHRISTIAN   | NEESON       |
+|  62 | JAYNE       | NEESON       |
+|  63 | CAMERON     | WRAY         |
+|  64 | RAY         | JOHANSSON    |
+|  65 | ANGELA      | HUDSON       |
+|  66 | MARY        | TANDY        |
+|  67 | JESSICA     | BAILEY       |
+|  68 | RIP         | WINSLET      |
+|  69 | KENNETH     | PALTROW      |
+|  70 | MICHELLE    | MCCONAUGHEY  |
+|  71 | ADAM        | GRANT        |
+|  72 | SEAN        | WILLIAMS     |
+|  73 | GARY        | PENN         |
+|  74 | MILLA       | KEITEL       |
+|  75 | BURT        | POSEY        |
+|  76 | ANGELINA    | ASTAIRE      |
+|  77 | CARY        | MCCONAUGHEY  |
+|  78 | GROUCHO     | SINATRA      |
+|  79 | MAE         | HOFFMAN      |
+|  80 | RALPH       | CRUZ         |
+|  81 | SCARLETT    | DAMON        |
+|  82 | WOODY       | JOLIE        |
+|  83 | BEN         | WILLIS       |
+|  84 | JAMES       | PITT         |
+|  85 | MINNIE      | ZELLWEGER    |
+|  86 | GREG        | CHAPLIN      |
+|  87 | SPENCER     | PECK         |
+|  88 | KENNETH     | PESCI        |
+|  89 | CHARLIZE    | DENCH        |
+|  90 | SEAN        | GUINESS      |
+|  91 | CHRISTOPHER | BERRY        |
+|  92 | KIRSTEN     | AKROYD       |
+|  93 | ELLEN       | PRESLEY      |
+|  94 | KENNETH     | TORN         |
+|  95 | DARYL       | WAHLBERG     |
+|  96 | GENE        | WILLIS       |
+|  97 | MEG         | HAWKE        |
+|  98 | CHRIS       | BRIDGES      |
+|  99 | JIM         | MOSTEL       |
+| 100 | SPENCER     | DEPP         |
+| 101 | SUSAN       | DAVIS        |
+| 102 | WALTER      | TORN         |
+| 103 | MATTHEW     | LEIGH        |
+| 104 | PENELOPE    | CRONYN       |
+| 105 | SIDNEY      | CROWE        |
+| 106 | GROUCHO     | DUNST        |
+| 107 | GINA        | DEGENERES    |
+| 108 | WARREN      | NOLTE        |
+| 109 | SYLVESTER   | DERN         |
+| 110 | SUSAN       | DAVIS        |
+| 111 | CAMERON     | ZELLWEGER    |
+| 112 | RUSSELL     | BACALL       |
+| 113 | MORGAN      | HOPKINS      |
+| 114 | MORGAN      | MCDORMAND    |
+| 115 | HARRISON    | BALE         |
+| 116 | DAN         | STREEP       |
+| 117 | RENEE       | TRACY        |
+| 118 | CUBA        | ALLEN        |
+| 119 | WARREN      | JACKMAN      |
+| 120 | PENELOPE    | MONROE       |
+| 121 | LIZA        | BERGMAN      |
+| 122 | SALMA       | NOLTE        |
+| 123 | JULIANNE    | DENCH        |
+| 124 | SCARLETT    | BENING       |
+| 125 | ALBERT      | NOLTE        |
+| 126 | FRANCES     | TOMEI        |
+| 127 | KEVIN       | GARLAND      |
+| 128 | CATE        | MCQUEEN      |
+| 129 | DARYL       | CRAWFORD     |
+| 130 | GRETA       | KEITEL       |
+| 131 | JANE        | JACKMAN      |
+| 132 | ADAM        | HOPPER       |
+| 133 | RICHARD     | PENN         |
+| 134 | GENE        | HOPKINS      |
+| 135 | RITA        | REYNOLDS     |
+| 136 | ED          | MANSFIELD    |
+| 137 | MORGAN      | WILLIAMS     |
+| 138 | LUCILLE     | DEE          |
+| 139 | EWAN        | GOODING      |
+| 140 | WHOOPI      | HURT         |
+| 141 | CATE        | HARRIS       |
+| 142 | JADA        | RYDER        |
+| 143 | RIVER       | DEAN         |
+| 144 | ANGELA      | WITHERSPOON  |
+| 145 | KIM         | ALLEN        |
+| 146 | ALBERT      | JOHANSSON    |
+| 147 | FAY         | WINSLET      |
+| 148 | EMILY       | DEE          |
+| 149 | RUSSELL     | TEMPLE       |
+| 150 | JAYNE       | NOLTE        |
+| 151 | GEOFFREY    | HESTON       |
+| 152 | BEN         | HARRIS       |
+| 153 | MINNIE      | KILMER       |
+| 154 | MERYL       | GIBSON       |
+| 155 | IAN         | TANDY        |
+| 156 | FAY         | WOOD         |
+| 157 | GRETA       | MALDEN       |
+| 158 | VIVIEN      | BASINGER     |
+| 159 | LAURA       | BRODY        |
+| 160 | CHRIS       | DEPP         |
+| 161 | HARVEY      | HOPE         |
+| 162 | OPRAH       | KILMER       |
+| 163 | CHRISTOPHER | WEST         |
+| 164 | HUMPHREY    | WILLIS       |
+| 165 | AL          | GARLAND      |
+| 166 | NICK        | DEGENERES    |
+| 167 | LAURENCE    | BULLOCK      |
+| 168 | WILL        | WILSON       |
+| 169 | KENNETH     | HOFFMAN      |
+| 170 | MENA        | HOPPER       |
+| 171 | OLYMPIA     | PFEIFFER     |
+| 172 | GROUCHO     | WILLIAMS     |
+| 173 | ALAN        | DREYFUSS     |
+| 174 | MICHAEL     | BENING       |
+| 175 | WILLIAM     | HACKMAN      |
+| 176 | JON         | CHASE        |
+| 177 | GENE        | MCKELLEN     |
+| 178 | LISA        | MONROE       |
+| 179 | ED          | GUINESS      |
+| 180 | JEFF        | SILVERSTONE  |
+| 181 | MATTHEW     | CARREY       |
+| 182 | DEBBIE      | AKROYD       |
+| 183 | RUSSELL     | CLOSE        |
+| 184 | HUMPHREY    | GARLAND      |
+| 185 | MICHAEL     | BOLGER       |
+| 186 | JULIA       | ZELLWEGER    |
+| 187 | RENEE       | BALL         |
+| 188 | ROCK        | DUKAKIS      |
+| 189 | CUBA        | BIRCH        |
+| 190 | AUDREY      | BAILEY       |
+| 191 | GREGORY     | GOODING      |
+| 192 | JOHN        | SUVARI       |
+| 193 | BURT        | TEMPLE       |
+| 194 | MERYL       | ALLEN        |
+| 195 | JAYNE       | SILVERSTONE  |
+| 196 | BELA        | WALKEN       |
+| 197 | REESE       | WEST         |
+| 198 | MARY        | KEITEL       |
+| 199 | JULIA       | FAWCETT      |
+| 200 | THORA       | TEMPLE       |
+|   0 | Yo          | Merengues    |
++-----+-------------+--------------+
+201 rows in set (0.0122 sec)
+
+ MySQL  localhost:3306 ssl  eva_3  SQL > use sakila
+Default schema set to `sakila`.
+Fetching table and column names from `sakila` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306 ssl  sakila  SQL > show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > desc actor;
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type                 | Null | Key | Default           | Extra                                         |
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint(5) unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)          | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)          | NO   | MUL | NULL              |                                               |
+| last_update | timestamp            | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0016 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > desc film_actor;
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type                 | Null | Key | Default           | Extra                                         |
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint(5) unsigned | NO   | PRI | NULL              |                                               |
+| film_id     | smallint(5) unsigned | NO   | PRI | NULL              |                                               |
+| last_update | timestamp            | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+3 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > desc film;
++----------------------+---------------------------------------------------------------------+------+-----+-------------------+-----------------------------------------------+
+| Field                | Type                                                                | Null | Key | Default           | Extra                                         |
++----------------------+---------------------------------------------------------------------+------+-----+-------------------+-----------------------------------------------+
+| film_id              | smallint(5) unsigned                                                | NO   | PRI | NULL              | auto_increment                                |
+| title                | varchar(255)                                                        | NO   | MUL | NULL              |                                               |
+| description          | text                                                                | YES  |     | NULL              |                                               |
+| release_year         | year(4)                                                             | YES  |     | NULL              |                                               |
+| language_id          | tinyint(3) unsigned                                                 | NO   | MUL | NULL              |                                               |
+| original_language_id | tinyint(3) unsigned                                                 | YES  | MUL | NULL              |                                               |
+| rental_duration      | tinyint(3) unsigned                                                 | NO   |     | 3                 |                                               |
+| rental_rate          | decimal(4,2)                                                        | NO   |     | 4.99              |                                               |
+| length               | smallint(5) unsigned                                                | YES  |     | NULL              |                                               |
+| replacement_cost     | decimal(5,2)                                                        | NO   |     | 19.99             |                                               |
+| rating               | enum('G','PG','PG-13','R','NC-17')                                  | YES  |     | G                 |                                               |
+| special_features     | set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') | YES  |     | NULL              |                                               |
+| last_update          | timestamp                                                           | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++----------------------+---------------------------------------------------------------------+------+-----+-------------------+-----------------------------------------------+
+13 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > select * from con_actores limit 10;
++-----------------------+------------+-----------+
+| title                 | first_name | last_name |
++-----------------------+------------+-----------+
+| ACADEMY DINOSAUR      | PENELOPE   | GUINESS   |
+| ANACONDA CONFESSIONS  | PENELOPE   | GUINESS   |
+| ANGELS LIFE           | PENELOPE   | GUINESS   |
+| BULWORTH COMMANDMENTS | PENELOPE   | GUINESS   |
+| CHEAPER CLYDE         | PENELOPE   | GUINESS   |
+| COLOR PHILADELPHIA    | PENELOPE   | GUINESS   |
+| ELEPHANT TROJAN       | PENELOPE   | GUINESS   |
+| GLEAMING JAWBREAKER   | PENELOPE   | GUINESS   |
+| HUMAN GRAFFITI        | PENELOPE   | GUINESS   |
+| KING EVOLUTION        | PENELOPE   | GUINESS   |
++-----------------------+------------+-----------+
+10 rows in set (0.0291 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| con_actores                |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+24 rows in set (0.0020 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > desc film_category
+                                       -> ;
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type                 | Null | Key | Default           | Extra                                         |
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+| film_id     | smallint(5) unsigned | NO   | PRI | NULL              |                                               |
+| category_id | tinyint(3) unsigned  | NO   | PRI | NULL              |                                               |
+| last_update | timestamp            | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+----------------------+------+-----+-------------------+-----------------------------------------------+
+3 rows in set (0.0017 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > desc category;
++-------------+---------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type                | Null | Key | Default           | Extra                                         |
++-------------+---------------------+------+-----+-------------------+-----------------------------------------------+
+| category_id | tinyint(3) unsigned | NO   | PRI | NULL              | auto_increment                                |
+| name        | varchar(25)         | NO   |     | NULL              |                                               |
+| last_update | timestamp           | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+---------------------+------+-----+-------------------+-----------------------------------------------+
+3 rows in set (0.0016 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > select a.title, c.name from film a
+                                       -> inner join film_category b on a.film_id = b.film_id
+                                       -> inner join category c on b.category_id = c.category_id limit 3;
++--------------------+--------+
+| title              | name   |
++--------------------+--------+
+| AMADEUS HOLY       | Action |
+| AMERICAN CIRCUS    | Action |
+| ANTITRUST TOMATOES | Action |
++--------------------+--------+
+3 rows in set (0.0231 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL > select * from con_cat_film limit 10;
++---------------------+--------+
+| title               | name   |
++---------------------+--------+
+| AMADEUS HOLY        | Action |
+| AMERICAN CIRCUS     | Action |
+| ANTITRUST TOMATOES  | Action |
+| ARK RIDGEMONT       | Action |
+| BAREFOOT MANCHURIAN | Action |
+| BERETS AGENT        | Action |
+| BRIDE INTRIGUE      | Action |
+| BULL SHAWSHANK      | Action |
+| CADDYSHACK JEDI     | Action |
+| CAMPUS REMEMBER     | Action |
++---------------------+--------+
+10 rows in set (0.0007 sec)
+
+ MySQL  localhost:3306 ssl  sakila  SQL >
